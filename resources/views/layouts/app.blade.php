@@ -6,7 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }}"/>
 </head>
 <body>
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -98,11 +99,9 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                            <span>
-                                <i class="ti ti-aperture"></i>
-                            </span>
-                            <span class="hide-menu">Sample Page</span>
+                            <a class="sidebar-link" href="{{ Route('licence.index') }}" aria-expanded="false">
+                                <span><i class="ti ti-aperture"></i></span>
+                                <span class="hide-menu">Licence</span>
                             </a>
                         </li>
                     </ul>
@@ -168,10 +167,12 @@
     </div>
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/jquery/dist/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
     <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+    @yield('script')
 </body>
 </html>
