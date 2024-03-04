@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('licences', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('code')->unique();
-            $table->string('date_aspiration');
-            $table->enum('etat',[0,1])->default(1);
+            $table->string('duree');
+            $table->string('date_aspire');
+            $table->enum('actif',[0,1])->default(1);
             $table->timestamps();
         });
     }

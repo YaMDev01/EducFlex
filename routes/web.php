@@ -21,4 +21,7 @@ Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('/licence', App\Http\Controllers\GestionLicenceController::class);
+Route::resource('/school_year', App\Http\Controllers\SchoolYearController::class)->except(['show']);
+Route::resource('/nationalite', App\Http\Controllers\GestionNationalityController::class)->except(['show']);
+Route::resource('/school', App\Http\Controllers\GestionSchoolController::class)->except(['show','destroy']);
+Route::resource('/licence', App\Http\Controllers\GestionLicenceController::class)->except(['show','destroy']);

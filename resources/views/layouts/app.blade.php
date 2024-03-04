@@ -8,6 +8,7 @@
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/vendor/remixicon/fonts/remixicon.css') }}">
 </head>
 <body>
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -67,11 +68,11 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ Route('school_year.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-typography"></i>
                             </span>
-                            <span class="hide-menu">Typography</span>
+                            <span class="hide-menu">Année Scolaire</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -83,25 +84,25 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ Route('nationalite.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-user-plus"></i>
                             </span>
-                            <span class="hide-menu">Register</span>
+                            <span class="hide-menu">Nationalité</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ Route('school.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-mood-happy"></i>
                             </span>
-                            <span class="hide-menu">Icons</span>
+                            <span class="hide-menu">{{ __('School') }}</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ Route('licence.index') }}" aria-expanded="false">
                                 <span><i class="ti ti-aperture"></i></span>
-                                <span class="hide-menu">Licence</span>
+                                <span class="hide-menu">{{ __('Licence') }}</span>
                             </a>
                         </li>
                     </ul>

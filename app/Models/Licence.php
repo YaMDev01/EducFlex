@@ -11,7 +11,8 @@ class Licence extends Model
 
     protected $fillable = [
         'code',
-        'date_aspiration',
-        'etat'
+        'duree',
+        'date_aspire',
+        'actif'
     ];
 }
