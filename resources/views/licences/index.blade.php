@@ -36,7 +36,7 @@
             <tbody>
                 @if ($licence->exists)
                 <tr>
-                    <td class="text-{{ $licence->actif ? 'success':'danger' }}">{{ $licence->actif ? 'Actif':'Inactif' }}</td>
+                    <td>{{ $licence->actif ? 'Actif':'Inactif' }}</td>
                     <td>{{ $licence->code }}</td>
                     <td>{{ $licence->duree }} {{ $licence->duree == 1 ? 'an':'ans' }}</td>
                     <td>{{ $licence->date_aspire }}</td>
