@@ -36,19 +36,19 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ Route('scolarite.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-article"></i>
                             </span>
-                            <span class="hide-menu">Buttons</span>
+                            <span class="hide-menu">Scolarité</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ Route('cycle.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-alert-circle"></i>
                             </span>
-                            <span class="hide-menu">Alerts</span>
+                            <span class="hide-menu">Cycle</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -57,6 +57,14 @@
                                 <i class="ti ti-cards"></i>
                             </span>
                             <span class="hide-menu">Coefficient</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ Route('classe.index') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-file-description"></i>
+                            </span>
+                            <span class="hide-menu">Classe</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -81,6 +89,14 @@
                                 <i class="ti ti-login"></i>
                             </span>
                             <span class="hide-menu">Level</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ Route('serie.index') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-alert-circle"></i>
+                            </span>
+                            <span class="hide-menu">Série</span>
                             </a>
                         </li>
                         <li class="sidebar-item">

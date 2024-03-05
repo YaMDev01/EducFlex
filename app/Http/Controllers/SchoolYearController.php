@@ -84,13 +84,13 @@ class SchoolYearController extends Controller
             'actif' => 'nullable|integer'
         ]);
         
-        if($request['cycle1'] && $request['cycle2']  ){ $data['cycle'] = '3'; }
+        if($request['cycle1'] && $request['cycle2']){ $data['cycle'] = '3'; }
         elseif($request['cycle2']){ $data['cycle'] = '2'; }
         elseif($request['cycle1']){ $data['cycle'] = '1'; }
         
         $data['actif'] = $request['actif'] ?? '0';
         // dd($data);
-        if($data['actif'] && $data['actif'] == 1){
+        if($data['actif'] == '1'){
             SchoolYear::where('actif', '1')->update(['actif' => '0']);
             $school_year->update($data);
         }
