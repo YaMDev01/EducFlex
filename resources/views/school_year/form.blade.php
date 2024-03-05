@@ -61,9 +61,9 @@
                     <label class="form-label" for="cycle2">{{ __('Cycle 2') }}</label>
                 </span>
 
-                @if ($school_year->exists && $school_year->actif != 1)
+                @if ($school_year->exists)
                 <span class="mx-5">
-                    <input type="checkbox" name="actif" class="form-checks" id="actif" value="1">
+                    <input type="checkbox" name="actif" class="form-checks" id="actif" value="1" {{ $school_year->actif != 1 ? null:'checked' }} {{ $school_year->actif != 1 ? null:'disabled' }}>
                     <label class="form-label" for="actif">{{ __('Activation') }}</label>
                 </span>
                 @elseif ($school_year->exists == null)

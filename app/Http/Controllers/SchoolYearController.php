@@ -64,17 +64,8 @@ class SchoolYearController extends Controller
         return \to_route('school_year.index')->with($statut, $message);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(SchoolYear $school_year)
     {
         return \view('school_year.form', [
@@ -82,9 +73,7 @@ class SchoolYearController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, SchoolYear $school_year)
     {
         $data = $request->validate([
@@ -94,7 +83,13 @@ class SchoolYearController extends Controller
             'cycle2' => 'nullable|integer',
             'actif' => 'nullable|integer'
         ]);
+        
+        if($request['cycle1'] && $request['cycle2']  ){ $data['cycle'] = '3'; }
+        elseif($request['cycle2']){ $data['cycle'] = '2'; }
+        elseif($request['cycle1']){ $data['cycle'] = '1'; }
+        
         $data['actif'] = $request['actif'] ?? '0';
+        // dd($data);
         if($data['actif'] && $data['actif'] == 1){
             SchoolYear::where('actif', '1')->update(['actif' => '0']);
             $school_year->update($data);
@@ -105,11 +100,10 @@ class SchoolYearController extends Controller
         return \to_route('school_year.index')->with('success', 'Mise à jour effectuée avec success');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    
+    public function destroy(SchoolYear $school_year)
     {
-        //
+        $school_year->delete();
+        return \to_route('school_year.index')->with('success', 'Suppression effectuée avec success');
     }
 }

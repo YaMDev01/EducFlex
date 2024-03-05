@@ -14,9 +14,49 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\Cycle::factory()->create([
+            'libelle' => 'cycle 1'
+        ]);
+        \App\Models\Cycle::factory()->create([
+            'libelle' => 'cycle 2'
+        ]);
+
+        // Add level school
+        \App\Models\Level::factory()->create([
+            'cycle_id' => '1',
+            'libelle' => 'Sixieme',
+            'code' => '6eme'
+        ]);
+        \App\Models\Level::factory()->create([
+            'cycle_id' => '1',
+            'libelle' => 'Cinquieme',
+            'code' => '5eme'
+        ]);
+        \App\Models\Level::factory()->create([
+            'cycle_id' => '1',
+            'libelle' => 'Quatrieme',
+            'code' => '4eme'
+        ]);
+        \App\Models\Level::factory()->create([
+            'cycle_id' => '1',
+            'libelle' => 'Troisieme',
+            'code' => '3eme'
+        ]);
+        \App\Models\Level::factory()->create([
+            'cycle_id' => '2',
+            'libelle' => 'Seconde',
+            'code' => '2nd'
+        ]);
+        \App\Models\Level::factory()->create([
+            'cycle_id' => '2',
+            'libelle' => 'Premiere',
+            'code' => '1ere'
+        ]);
+        \App\Models\Level::factory()->create([
+            'cycle_id' => '2',
+            'libelle' => 'Terminale',
+            'code' => 'Tle'
+        ]);
+
     }
 }
