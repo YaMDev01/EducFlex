@@ -12,7 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => \Hash::make('0000'),
+        ]);
+        
 
         \App\Models\Cycle::factory()->create([
             'libelle' => 'cycle 1'
@@ -56,6 +61,10 @@ class DatabaseSeeder extends Seeder
             'cycle_id' => '2',
             'libelle' => 'Terminale',
             'code' => 'Tle'
+        ]);
+
+        \App\Models\Serie::factory()->create([
+            'libelle' => 'unique',
         ]);
 
     }

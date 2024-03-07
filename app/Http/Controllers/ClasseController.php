@@ -16,6 +16,8 @@ class ClasseController extends Controller
      */
     public function index()
     {
+        // $data = Classe::get();
+            
         return \view('classe.index',[
             'classe' => Classe::get()
         ]);
@@ -29,7 +31,7 @@ class ClasseController extends Controller
         return \view('classe.form',[
             'classe' => new Classe(),
             'level' => Level::where('actif','1')->get(),
-            'serie' => Serie::where('actif', '1')->get()
+            'serie' => Serie::where('actif', '1')->where('id','!=','1')->get()
         ]);
     }
 
@@ -46,6 +48,7 @@ class ClasseController extends Controller
 
         /** @var serie_id */
         $serie = $data['serie_id'] ? explode('-',$data['serie_id']):'0';
+        $data['serie_id'] = $serie ? $serie[0]:'1';
 
         /** @var school_year actif */
         $yaer = SchoolYear::where('actif', '1')->first();
@@ -54,20 +57,21 @@ class ClasseController extends Controller
         /** @var classe verify */
         $currete_class = Classe::where('school_year_id',$yaer['id'])
         ->where('level_id', $level[0])
-        ->where('serie_id', $serie[0] ?? null)
+        ->where('serie_id', $serie[0] ?? '1')
         ->get();
         $alreadyExist = $currete_class->count();
 
         if($alreadyExist >= 1){
-            $lastClaase = $currete_class->latest()->first();
-            $data['classe'] = substr($lastClaase->libelle,0,-1).($alreadyExist+1);
+            $lastClaase = Classe::where('school_year_id',$yaer['id'])
+            ->where('level_id', $level[0])
+            ->where('serie_id', $serie[0] ?? '1')
+            ->latest()->first();
+            $data['classe'] = substr($lastClaase->classe,0,-1).($alreadyExist+1);
         }
         else{
             $i = '1';
-            $data['classe'] = $data['serie_id'] ? $level[1].ucfirst($serie[1]).$i : $level[1].$i;
+            $data['classe'] = $serie ? $level[1].ucfirst($serie[1]).$i : $level[1].$i;
         }
-        $data['serie_id'] = $serie ? $serie[0]:null;
-        $data['inscrit'] = 0;
 
         Classe::create($data);
         return \to_route('classe.index')->with('Enregistrement effectué avec success');
@@ -84,9 +88,13 @@ class ClasseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Classe $classe)
     {
-        //
+        return \view('classe.form',[
+            'classe' => $classe,
+            'level' => Level::where('actif','1')->get(),
+            'serie' => Serie::where('actif', '1')->where('id','!=','1')->get()
+        ]);
     }
 
     /**

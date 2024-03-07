@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('series', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('libelle')->unique();
-            $table->enum('genre',['litteraire','scientifique']);
-            $table->enum('seconde',[0,1]);
-            $table->enum('premiere',[0,1]);
-            $table->enum('terminale',[0,1]);
+            $table->enum('genre',['litteraire','scientifique'])->nullable();
+            $table->enum('seconde',[0,1])->nullable();
+            $table->enum('premiere',[0,1])->nullable();
+            $table->enum('terminale',[0,1])->nullable();
             $table->enum('actif',[0,1])->default(1);
             $table->timestamps();
         });
