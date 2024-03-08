@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('effectif');
             $table->string('inscrit')->default(0);
             $table->foreignIdFor(App\Models\Level::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(App\Models\Serie::class)->constrained()->cascadeOnDelete()->nullable();
+            $table->foreignIdFor(App\Models\Serie::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(App\Models\SchoolYear::class)->constrained()->cascadeOnDelete();
             $table->enum('actif',[0,1])->default(1);
             $table->timestamps();

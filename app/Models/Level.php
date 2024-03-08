@@ -15,4 +15,9 @@ class Level extends Model
         'code',
         'actif'
     ];
+
+    public function classes(): HasMany
+    {
+        return $this->hasMany(Classe::class);
+    }
 }

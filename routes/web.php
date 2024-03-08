@@ -21,7 +21,8 @@ Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('/classe', App\Http\Controllers\ClasseController::class)->except(['show']);
+Route::resource('/classe', App\Http\Controllers\ClasseController::class);
+Route::resource('/student', App\Http\Controllers\StudentController::class);
 Route::resource('/school_year', App\Http\Controllers\SchoolYearController::class)->except(['show']);
 Route::resource('/nationalite', App\Http\Controllers\GestionNationalityController::class)->except(['show']);
 Route::resource('/coefficient', App\Http\Controllers\CoefficientController::class)->except(['show']);

@@ -11,15 +11,15 @@ use Illuminate\Http\Request;
 
 class ClasseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
-        // $data = Classe::get();
-            
-        return \view('classe.index',[
-            'classe' => Classe::get()
+       /** @var level  */
+       $level = Level::where('actif','1')->get();
+
+       return \view('classe.index',[
+            'classe' => Classe::get(),
+            'levels' => $level
         ]);
     }
 
@@ -31,7 +31,7 @@ class ClasseController extends Controller
         return \view('classe.form',[
             'classe' => new Classe(),
             'level' => Level::where('actif','1')->get(),
-            'serie' => Serie::where('actif', '1')->where('id','!=','1')->get()
+            'serie' => Serie::where('actif', '1')->get()
         ]);
     }
 
@@ -48,7 +48,7 @@ class ClasseController extends Controller
 
         /** @var serie_id */
         $serie = $data['serie_id'] ? explode('-',$data['serie_id']):'0';
-        $data['serie_id'] = $serie ? $serie[0]:'1';
+        $data['serie_id'] = $serie ? $serie[0] : null;
 
         /** @var school_year actif */
         $yaer = SchoolYear::where('actif', '1')->first();
@@ -57,14 +57,14 @@ class ClasseController extends Controller
         /** @var classe verify */
         $currete_class = Classe::where('school_year_id',$yaer['id'])
         ->where('level_id', $level[0])
-        ->where('serie_id', $serie[0] ?? '1')
+        ->where('serie_id', $data['serie_id'])
         ->get();
         $alreadyExist = $currete_class->count();
 
         if($alreadyExist >= 1){
             $lastClaase = Classe::where('school_year_id',$yaer['id'])
             ->where('level_id', $level[0])
-            ->where('serie_id', $serie[0] ?? '1')
+            ->where('serie_id', $data['serie_id'])
             ->latest()->first();
             $data['classe'] = substr($lastClaase->classe,0,-1).($alreadyExist+1);
         }
@@ -82,7 +82,13 @@ class ClasseController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $yaer = SchoolYear::where('actif', '1')->first();
+        $classe = Classe::where('school_year_id', $yaer->id)->where('level_id',$id)->get();
+
+        return \view('classe.show',[
+            'classe' => $classe,
+            'level' => Level::where('id',$id)->first()
+        ]);
     }
 
     /**
@@ -108,8 +114,9 @@ class ClasseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Classe $classe)
     {
-        //
+        $classe->delete();
+        return \to_route('classe.index')->with('success', 'Suppression effectuée avec success');
     }
 }

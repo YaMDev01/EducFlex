@@ -63,9 +63,9 @@ class DatabaseSeeder extends Seeder
             'code' => 'Tle'
         ]);
 
-        \App\Models\Serie::factory()->create([
-            'libelle' => 'unique',
-        ]);
+        // \App\Models\Serie::factory()->create([
+        //     'libelle' => 'unique',
+        // ]);
 
     }
 }

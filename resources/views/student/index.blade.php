@@ -4,9 +4,9 @@
 
 <div class="container-fluid">
     <div class="brand-logo d-flex align-items-center justify-content-between">
-        <h5 class="card-title fw-semibold mb-4">{{ __('Gestion des classes') }}</h5>
-        <a href="{{ Route('classe.create') }}" class="btn btn-info btn-dm">
-            {{ __('Ajout de classe') }}
+        <h5 class="card-title fw-semibold mb-4">{{ __('Gestion des élèves') }}</h5>
+        <a href="{{ Route('student.create') }}" class="btn btn-info btn-dm">
+            {{ __('Ajout élève') }}
         </a>
     </div>
     @if(session('error'))
@@ -28,9 +28,9 @@
             <thead>
                 <tr>
                 <th scope="col" style="width: 10%"></th>
-                <th scope="col">{{ __('Niveau') }}</th>
-                <th scope="col">{{ __('Code') }}</th>
-                <th scope="col">{{ __('Nomble de classe') }}</th>
+                <th scope="col">{{ __('School Year') }}</th>
+                <th scope="col">{{ __('Session') }}</th>
+                <th scope="col">{{ __('Statut') }}</th>
                 <th scope="col" style="width: 15%">{{ __('Actions') }}</th>
                 </tr>
             </thead>
@@ -38,24 +38,24 @@
                 @php
                     $i = 0;
                 @endphp
-                @forelse ($classe as $item)
+                {{-- @forelse ($school_year as $item)
                 <tr>
                     <td>{{ $i += 1 }}</td>
-                    <td>{{ ucfirst($item->level->libelle) }}</td>
-                    <td>{{ ucfirst($item->level->code) }}</td>
-                    <td>{{ $item->actif ? 'Actif':'Inact' }}</td>
+                    <td>{{ $item->school_year }}</td>
+                    <td>{{ $item->session == 3 ? 'Trimestre':null }}{{ $item->session == 2 ? 'Semestre':null }}</td>
+                    <td>{{ $item->actif ? 'Actif':'Inactif' }}</td>
                     <td>
                         <div class="d-flex align-items-center list-action">
-                            <a class="btn btn-outline-warning mx-2 py-1 px-2" title="Detail" href="{{ Route('classe.show',$item->level_id) }}">
-                                <i class="ri-eye-line mr-0"></i>
+                            <a class="btn btn-outline-info mx-2 py-1 px-2" title="Edit" href="{{ Route('school_year.edit',$item) }}">
+                                <i class="ri-pencil-line mr-0"></i>
                             </a>
-                            {{-- <form action="{{ Route('classe.destroy',$item) }}" method="post">
+                            <form action="{{ Route('school_year.destroy',$item) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-outline-danger mx-2 py-1 px-2" title="Delete" {{ $item->actif ? 'disabled':null }}>
                                     <i class="ri-delete-bin-line mr-0"></i>
                                 </button>
-                            </form> --}}
+                            </form>
                         </div>
                     </td>
                 </tr>
@@ -65,7 +65,7 @@
                         {{ __('Pas de données disponible') }}
                     </th>
                 </tr>
-                @endforelse
+                @endforelse --}}
             </tbody>
         </table>
     </div>

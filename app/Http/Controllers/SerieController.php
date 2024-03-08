@@ -14,7 +14,7 @@ class SerieController extends Controller
     public function index()
     {
         return \view('serie.index',[
-            'serie' => Serie::where('id','!=','1')->orderBy('libelle', 'asc')->get()
+            'serie' => Serie::orderBy('libelle', 'asc')->get()
         ]);
     }
 
