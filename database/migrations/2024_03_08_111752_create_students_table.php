@@ -14,14 +14,18 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('matricule')->unique();
+            $table->enum('affecte',['Oui','Non']);
+            $table->string('interne');
             $table->string('nom');
             $table->string('prenom');
-            $table->enum('sexe',['F','G']);
+            $table->enum('genre',['F','M'])->comments('Feminin,Masculin');
             $table->string('date_nais');
             $table->string('lieu_nais');
             $table->string('lieu_residence');
             $table->string('etablissement_origine')->nullable();
             $table->string('annee_entree');
+            $table->enum('boursier',['oui','non']);
+            $table->enum('redoublant',['oui','non']);
             $table->string('avatar')->nullable();
             $table->string('nom_prenom_pere')->nullable();
             $table->string('profession_pere')->nullable();
@@ -32,9 +36,10 @@ return new class extends Migration
             $table->string('nom_prenom_tuteur')->nullable();
             $table->string('profession_tuteur')->nullable();
             $table->string('contact_tuteur')->nullable();
+            $table->foreignIdFor(App\Models\Level::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(App\Models\Nationality::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(App\Models\SchoolYear::class)->constrained()->cascadeOnDelete();
-            $table->enum('actif',[0,1])->default(1);
+            $table->enum('actif',[0,1])->default(1)->comments('Actif,Inactif');
             $table->timestamps();
         });
     }
